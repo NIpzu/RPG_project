@@ -9,7 +9,7 @@
 
 
 
-
+#include "Map.h"
 
 
 int main() // Where it all begins
@@ -25,7 +25,8 @@ int main() // Where it all begins
 
 	Game game(win,Graphics(win));
 
-	std::cout << (unsigned char(255) & 0b1000000 == 0b1000000);
+	Map map;
+	map.LoadFromFile(std::string("Test.txt"));
 
 	game.Loop();
 

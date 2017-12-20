@@ -6,10 +6,9 @@
 class Map
 {
 public:
-	Map();
-
-private:
+	Map() = default;
 	void LoadFromFile(std::string& filename);
+private:
 	//	std::vector<>
 
 	enum class TileTypes : char {
@@ -25,7 +24,7 @@ private:
 			return TileTypes(type);
 		}
 		bool IsMoveable() {
-			return type & 0b1000000 == 0b10000000;
+			return (type & 0b1000000) == 0b10000000;
 		}
 
 	private:
