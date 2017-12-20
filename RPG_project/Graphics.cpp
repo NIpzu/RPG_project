@@ -7,9 +7,7 @@ Graphics::Graphics(sf::RenderWindow& win)
 {
 }
 
-
-
-void Graphics::Draw(sf::Sprite* sprite, sf::Vector2f& pos)
+void Graphics::DrawSprite(sf::Sprite* sprite, sf::Vector2f& pos)
 {
 	sprite->setPosition(pos);
 	win.draw(*sprite);
