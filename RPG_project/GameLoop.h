@@ -22,7 +22,6 @@ private:
 
 
 
-
 private:
 	Graphics& gfx;
 	sf::Window& win;

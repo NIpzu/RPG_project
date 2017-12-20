@@ -10,6 +10,17 @@ public:
 	void Draw(sf::Sprite* sprite, sf::Vector2f& pos);
 	void Clear(sf::Color& color = sf::Color(0, 0, 0));
 	void Display();
+
+public:
+	class Sprite
+	{
+	public:
+		Sprite(const std::string filename, const sf::IntRect rect);
+
+	private:
+		sf::Sprite actualSprite;
+	};
+
 private:
 	sf::RenderWindow& win;
 };

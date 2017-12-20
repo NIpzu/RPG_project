@@ -25,8 +25,6 @@ int main() // Where it all begins
 
 	Game game(win,Graphics(win));
 
-	Map map;
-	map.LoadFromFile(std::string("Test.txt"));
 
 	game.Loop();
 
