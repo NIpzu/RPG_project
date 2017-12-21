@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileAcces.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -118,6 +119,7 @@
     <ClCompile Include="SpriteList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileAcces.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Map.h" />

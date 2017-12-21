@@ -2,19 +2,15 @@
 
 #include <string>
 #include <vector>
+#include "TileTypes.h"
 
 class Map
 {
 public:
-	Map() = default;
-	void LoadFromFile(std::string& filename);
-private:
-	//	std::vector<>
 
-	enum class TileTypes : char {
-		empty,
-		count
-	};
+private:
+	std::vector<TileTypes> curMap;
+
 private:
 	struct MapTile
 	{
