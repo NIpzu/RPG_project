@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Graphics.h"
+#include "TextureList.h"
 
 
 class Game
@@ -14,6 +15,7 @@ public:
 private:
 	bool looping = false;
 
+	TextureList spl;
 
 
 private:

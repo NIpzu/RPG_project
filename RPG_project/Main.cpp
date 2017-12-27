@@ -9,8 +9,6 @@
 
 
 
-#include "Map.h"
-
 
 int main() // Where it all begins
 {
@@ -25,9 +23,10 @@ int main() // Where it all begins
 
 	Game game(win,Graphics(win));
 
+	std::cout << sizeof(Game);
 
+	
 	game.Loop();
-
 
 	return 1; // Exit the program
 }

@@ -3,7 +3,8 @@
 Game::Game(sf::Window& win, Graphics& gfx)
 	:
 	win(win),
-	gfx(gfx)
+	gfx(gfx),
+	spl("test.bmp", 32, 32, 2, 2)
 {
 }
 
@@ -45,9 +46,14 @@ void Game::UpdateScene()
 		}
 	}
 
+	spl.Load(3);
+	spl.Load(1);
+
 
 }
 
 void Game::DrawScene()
 {
+	gfx.DrawSprite(spl.getTexture(1), sf::Vector2f{1, 2});
+	gfx.DrawSprite(spl.getTexture(3), sf::Vector2f{ 121,32 });
 }
