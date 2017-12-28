@@ -6,6 +6,10 @@ Game::Game(sf::Window& win, Graphics& gfx)
 	gfx(gfx),
 	spl("test.bmp", 32, 32, 2, 2)
 {
+	spl.Load(1);
+	spl.Load(2);
+	spl.Load(3);
+	spl.Free(2);
 }
 
 void Game::LoopOnce()
@@ -46,14 +50,13 @@ void Game::UpdateScene()
 		}
 	}
 
-	spl.Load(3);
-	spl.Load(1);
+
 
 
 }
 
 void Game::DrawScene()
 {
-	gfx.DrawSprite(spl.getTexture(1), sf::Vector2f{1, 2});
+	gfx.DrawSprite(spl.getTexture(1), sf::Vector2f( sf::Mouse::getPosition(win)));
 	gfx.DrawSprite(spl.getTexture(3), sf::Vector2f{ 121,32 });
 }

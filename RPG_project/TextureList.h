@@ -15,5 +15,5 @@ private:
 	const int spriteWidth, spriteHeight, nRows, nColumns;
 	const std::string fileName;
 	std::vector<int> indexToVector;
-	std::vector<sf::Texture> TextureArray;
+	std::vector<sf::Texture> textureArray;
 };

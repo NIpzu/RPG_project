@@ -21,20 +21,33 @@ void TextureList::Load(int index)
 	{
 		sf::Texture* texture = new sf::Texture;
 		texture->loadFromFile(fileName, sf::IntRect(spriteWidth * (index % nColumns), spriteHeight * (index / nColumns), spriteWidth, spriteHeight));
-		TextureArray.emplace_back(*texture);
-		indexToVector[index] = TextureArray.size() - 1;
+		textureArray.emplace_back(*texture);
+		indexToVector[index] = textureArray.size() - 1;
 	}
 }
 
 void TextureList::Free(int index)
 {
-	if (indexToVector[index] != -1)
+	if (indexToVector[index] != -1 && textureArray.size() != 1)
 	{
-
+		for (int& i : indexToVector)
+		{
+			if (i == textureArray.size() - 1)
+			{
+				i = indexToVector[index];
+			}
+		}
+		std::swap(textureArray[indexToVector[index]], textureArray[textureArray.size() - 1]);
+		textureArray.pop_back();
+		indexToVector[index] = -1;
 	}
 }
 
 sf::Texture* TextureList::getTexture(int index)
 {
-	return &TextureArray[indexToVector[index]];
+	if (indexToVector[index] == -1)
+	{
+		Load(index);
+	}
+	return &textureArray[indexToVector[index]];
 }
