@@ -9,5 +9,5 @@ Character::Character(const sf::Vector2f & pos)
 
 void Character::Draw(Graphics & gfx) const
 {
-	gfx.DrawSprite(2, pos);
+	gfx.DrawSprite(5, pos);
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Graphics.h"
-#include "TextureList.h"
 #include "Character.h"
 
 class Game
@@ -15,7 +14,7 @@ public:
 private:
 	bool looping = false;
 
-	Character character{ sf::Vector2f(100,100) };
+	Character character{ sf::Vector2f(300,200) };
 
 private:
 	void UpdateScene();

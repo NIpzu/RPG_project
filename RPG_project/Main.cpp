@@ -22,10 +22,9 @@ int main() // Where it all begins
 
 	sf::RenderWindow win(sf::VideoMode(width, height), WindowName, sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize); // create window
 	win.setFramerateLimit(0); // disables framerate limit
+	Graphics gfx(win);
+	Game game(win,gfx);
 
-	Game game(win,Graphics(win));
-
-	std::cout << sizeof(Game);
 
 	
 	game.Loop();

@@ -10,7 +10,7 @@ public:
 	TextureList() = delete;
 	void Load(int index);
 	void Free(int index);
-	sf::Texture* getTexture(int index);
+	sf::Texture* GetTexture(int index);
 private:
 	const int spriteWidth, spriteHeight, nRows, nColumns;
 	const std::string fileName;

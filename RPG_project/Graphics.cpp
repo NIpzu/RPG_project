@@ -4,7 +4,7 @@
 Graphics::Graphics(sf::RenderWindow& win)
 	:
 	win(win),
-	textureList("test.png",32,32,2,2)
+	textureList("test.png",32,32,3,2)
 {
 }
 
@@ -39,7 +39,7 @@ void Graphics::DrawSprite(sf::Texture* texture, const sf::Vector2f & pos)
 
 void Graphics::DrawSprite(const int index, const sf::Vector2f & pos)
 {
-	DrawSprite(textureList.getTexture(index), pos);
+	DrawSprite(textureList.GetTexture(index), pos);
 }
 
 void Graphics::Clear(sf::Color& color)

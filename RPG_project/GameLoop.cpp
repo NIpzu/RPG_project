@@ -53,7 +53,6 @@ void Game::UpdateScene()
 
 
 
-
 }
 
 void Game::DrawScene()

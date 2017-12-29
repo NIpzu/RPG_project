@@ -1,14 +1,15 @@
 #include "TextureList.h"
 
-TextureList::TextureList(const std::string fileName, const int spriteWidth, const int spriteHeight, const int nRows, const int nColumns)
+TextureList::TextureList(const std::string fileName, const int spriteWidth, const int spriteHeight, const int nColumns, const int nRows)
 	:
 	spriteWidth(spriteWidth),
 	spriteHeight(spriteHeight),
-	nRows(nRows),
 	nColumns(nColumns),
+	nRows(nRows),
 	fileName(fileName),
 	indexToVector(nRows * nColumns, -1)
 {
+	indexToVector.resize(nRows * nColumns, -1);
 }
 
 void TextureList::Load(int index)
@@ -39,7 +40,7 @@ void TextureList::Free(int index)
 	}
 }
 
-sf::Texture* TextureList::getTexture(int index)
+sf::Texture* TextureList::GetTexture(int index)
 {
 	if (indexToVector[index] == -1)
 	{
