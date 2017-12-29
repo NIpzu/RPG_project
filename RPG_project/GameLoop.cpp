@@ -3,18 +3,13 @@
 Game::Game(sf::Window& win, Graphics& gfx)
 	:
 	win(win),
-	gfx(gfx),
-	spl("test.bmp", 32, 32, 2, 2)
+	gfx(gfx)
 {
-	spl.Load(1);
-	spl.Load(2);
-	spl.Load(3);
-	spl.Free(2);
 }
 
 void Game::LoopOnce()
 {
-	gfx.Clear(/* Insert background color */);
+	gfx.Clear(sf::Color(69,69,69)/* Insert background color */);
 
 	UpdateScene();
 
@@ -48,6 +43,12 @@ void Game::UpdateScene()
 				looping = false;
 			}
 		}
+		if (event.type == sf::Event::Resized)
+		{
+			// update the view to the new size of the window
+			sf::FloatRect visibleArea(0.0f, 0.0f, (float)event.size.width, (float)event.size.height);
+			gfx.setView(sf::View(visibleArea));
+		}
 	}
 
 
@@ -57,6 +58,5 @@ void Game::UpdateScene()
 
 void Game::DrawScene()
 {
-	gfx.DrawSprite(spl.getTexture(1), sf::Vector2f( sf::Mouse::getPosition(win)));
-	gfx.DrawSprite(spl.getTexture(3), sf::Vector2f{ 121,32 });
+	character.Draw(gfx);
 }

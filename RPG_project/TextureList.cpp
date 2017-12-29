@@ -1,6 +1,6 @@
 #include "TextureList.h"
 
-TextureList::TextureList(const std::string & fileName, const int spriteWidth, const int spriteHeight, const int nRows, const int nColumns)
+TextureList::TextureList(const std::string fileName, const int spriteWidth, const int spriteHeight, const int nRows, const int nColumns)
 	:
 	spriteWidth(spriteWidth),
 	spriteHeight(spriteHeight),
@@ -11,10 +11,6 @@ TextureList::TextureList(const std::string & fileName, const int spriteWidth, co
 {
 }
 
-TextureList::~TextureList()
-{
-}
-
 void TextureList::Load(int index)
 {
 	if (indexToVector[index] == -1)
@@ -22,7 +18,7 @@ void TextureList::Load(int index)
 		sf::Texture* texture = new sf::Texture;
 		texture->loadFromFile(fileName, sf::IntRect(spriteWidth * (index % nColumns), spriteHeight * (index / nColumns), spriteWidth, spriteHeight));
 		textureArray.emplace_back(*texture);
-		indexToVector[index] = textureArray.size() - 1;
+		indexToVector[index] = (int)textureArray.size() - 1;
 	}
 }
 

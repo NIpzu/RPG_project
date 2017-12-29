@@ -6,8 +6,8 @@
 class TextureList
 {
 public:
-	TextureList(const std::string& fileName, const int spriteWidth, const int spriteHeight, const int nRows, const int nColumns);
-	~TextureList();
+	TextureList(const std::string fileName, const int spriteWidth, const int spriteHeight, const int nRows, const int nColumns);
+	TextureList() = delete;
 	void Load(int index);
 	void Free(int index);
 	sf::Texture* getTexture(int index);

@@ -2,7 +2,7 @@
 
 #include "Graphics.h"
 #include "TextureList.h"
-
+#include "Character.h"
 
 class Game
 {
@@ -15,8 +15,7 @@ public:
 private:
 	bool looping = false;
 
-	TextureList spl;
-
+	Character character{ sf::Vector2f(100,100) };
 
 private:
 	void UpdateScene();

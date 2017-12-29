@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="FileAcces.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -119,6 +120,7 @@
     <ClCompile Include="TextureList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
     <ClInclude Include="FileAcces.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Graphics.h" />
