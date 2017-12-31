@@ -3,30 +3,30 @@
 #include <string>
 #include <vector>
 #include "TileTypes.h"
+#include "Settings.h"
+#include "Graphics.h"
 
 class Map
 {
 public:
+	Map(const Settings& settings);
+	void Draw(const Graphics& gfx);
+private:
+	std::vector<TileTypes> mapVec;
 
 private:
-	std::vector<TileTypes> curMap;
-
-private:
-	struct MapTile
+	bool BlocksMovement(const TileTypes type) const
 	{
-	public:
-		TileTypes GetType()
-		{
-			return TileTypes(type);
-		}
-		bool IsMoveable() {
-			return (type & 0b1000000) == 0b10000000;
-		}
-
-	private:
-		char type = 0b00000000;
-		char entity = 0b00000000;
-	};
-
-
+		return !DoesNotBlockMovement(type);
+	}
+	bool DoesNotBlockMovement(const TileTypes type) const
+	{
+		return char(type) >= 0b1000000;
+	}
+private:
+	int mapWidth;
+	int mapHeight;
+	int spriteScale;
+	int spriteWidth;
+	int spriteHeight;
 };

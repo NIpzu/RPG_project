@@ -3,39 +3,29 @@
 #include <limits>
 
 
-FileAcces::FileAcces(std::string& filename)
+FileAcces::FileAcces(const std::string filename)
 	:
 	openedFile(filename)
 {
 }
 
-
-std::vector<char>* FileAcces::LoadToVector(std::string& filename)
+void FileAcces::LoadToVector(const std::string filename, std::vector<char>& vec)
 {
 	openedFile = filename;
-	return LoadToVector();
+	LoadToVector(vec);
 }
 
-std::vector<char>* FileAcces::LoadToVector()
+void FileAcces::LoadToVector(std::vector<char>& vec)
 {
-	std::vector<char>* fileData = new std::vector<char>;
-
 	sf::FileInputStream file;
 	file.open(openedFile);
 
 	auto filesize = file.getSize();
 
-	if (filesize > std::numeric_limits<unsigned int>::max())
-	{
-		std::cout << "Size of file " << openedFile << "too big!" << std::endl;
-	}
+	vec.resize(filesize);
 
-	fileData->resize(unsigned int(filesize));
-
-	if (file.read(fileData->data(), filesize) != filesize)
+	if (file.read(vec.data(), filesize) != filesize)
 	{
 		std::cout << "Something went wrong while reading from " << openedFile << "!" << std::endl;
 	}
-
-	return fileData;
 }

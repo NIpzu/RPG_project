@@ -1,7 +1,7 @@
 #include "Graphics.h"
 #include "GameLoop.h"
 #include <iostream>
-
+#include "Settings.h"
 
 
 
@@ -14,16 +14,14 @@ int main() // Where it all begins
 {
 
 
-	int width = 800, height = 600;
-	//std::cin >> width;
-//	std::cin >> height;
-	std::string WindowName = "GameWindow"; // TODO something with these
 
+	Settings settings("settings.txt");
 
-	sf::RenderWindow win(sf::VideoMode(width, height), WindowName, sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize); // create window
+	sf::RenderWindow win(sf::VideoMode(settings.GetWindowWidth(), settings.GetWindowHeight()), settings.GetWindowName(), sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize); // create window
 	win.setFramerateLimit(0); // disables framerate limit
-	Graphics gfx(win);
-	Game game(win,gfx);
+	win.setVerticalSyncEnabled(false);
+	Graphics gfx(win,settings);
+	Game game(win, gfx, settings);
 
 
 	

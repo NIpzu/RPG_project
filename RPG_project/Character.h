@@ -6,7 +6,8 @@ class Character
 {
 public:
 	Character(const sf::Vector2f& pos);
-	void Draw(Graphics& gfx) const;
+	void Draw(const Graphics& gfx) const;
+	void Update();
 private:
 	sf::Vector2f pos;
 };

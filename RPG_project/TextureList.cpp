@@ -1,29 +1,27 @@
 #include "TextureList.h"
 
-TextureList::TextureList(const std::string fileName, const int spriteWidth, const int spriteHeight, const int nColumns, const int nRows)
+TextureList::TextureList(const Settings& settings)
 	:
-	spriteWidth(spriteWidth),
-	spriteHeight(spriteHeight),
-	nColumns(nColumns),
-	nRows(nRows),
-	fileName(fileName),
+	spriteWidth(settings.GetSpriteWidth()),
+	spriteHeight(settings.GetSpriteHeight()),
+	nColumns(3 * 32/ spriteWidth),
+	nRows(2 * 32 / spriteWidth),
+	filename(settings.GetSpriteFileName()),
 	indexToVector(nRows * nColumns, -1)
 {
-	indexToVector.resize(nRows * nColumns, -1);
 }
 
-void TextureList::Load(int index)
+void TextureList::Load(const int index)
 {
 	if (indexToVector[index] == -1)
 	{
-		sf::Texture* texture = new sf::Texture;
-		texture->loadFromFile(fileName, sf::IntRect(spriteWidth * (index % nColumns), spriteHeight * (index / nColumns), spriteWidth, spriteHeight));
-		textureArray.emplace_back(*texture);
+		textureArray.emplace_back();
 		indexToVector[index] = (int)textureArray.size() - 1;
+		textureArray[indexToVector[index]].loadFromFile(filename, sf::IntRect(spriteWidth * (index % nColumns), spriteHeight * (index / nColumns), spriteWidth, spriteHeight));
 	}
 }
 
-void TextureList::Free(int index)
+void TextureList::Free(const int index)
 {
 	if (indexToVector[index] != -1 && textureArray.size() != 1)
 	{
@@ -40,11 +38,21 @@ void TextureList::Free(int index)
 	}
 }
 
-sf::Texture* TextureList::GetTexture(int index)
+void TextureList::LoadAll()
 {
-	if (indexToVector[index] == -1)
+	for (int i = 0; i < indexToVector.size(); i++)
 	{
-		Load(index);
+		Load(i);
 	}
-	return &textureArray[indexToVector[index]];
+}
+
+const sf::Texture& TextureList::GetTexture(const int index) const
+{
+	return textureArray[indexToVector[index]];
+}
+
+const sf::Texture& TextureList::LoadAndGetTexture(const int index)
+{
+	Load(index);
+	return GetTexture(index);
 }

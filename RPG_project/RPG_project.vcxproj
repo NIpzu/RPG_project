@@ -117,6 +117,7 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Settings.cpp" />
     <ClCompile Include="TextureList.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +126,7 @@
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Settings.h" />
     <ClInclude Include="TextureList.h" />
     <ClInclude Include="TileTypes.h" />
   </ItemGroup>

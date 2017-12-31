@@ -2,11 +2,12 @@
 
 #include "Graphics.h"
 #include "Character.h"
+#include "Map.h"
 
 class Game
 {
 public:
-	Game(sf::Window& win, Graphics& gfx);
+	Game(sf::Window& win, Graphics& gfx, const Settings& settings);
 	void LoopOnce();
 	void Loop();
 
@@ -14,7 +15,10 @@ public:
 private:
 	bool looping = false;
 
-	Character character{ sf::Vector2f(300,200) };
+	sf::Time passed;
+	sf::Clock clock;
+	int updates = 0;
+	Map map;
 
 private:
 	void UpdateScene();

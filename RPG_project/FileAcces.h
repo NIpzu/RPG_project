@@ -6,11 +6,11 @@
 class FileAcces
 {
 public:
-	FileAcces(std::string& filename);
+	FileAcces(const std::string filename);
 
 
-	std::vector<char>* FileAcces::LoadToVector(std::string& filename);
-	std::vector<char>* FileAcces::LoadToVector();
+	void FileAcces::LoadToVector(const std::string filename, std::vector<char>& vec);
+	void FileAcces::LoadToVector(std::vector<char>& vec);
 
 private:
 

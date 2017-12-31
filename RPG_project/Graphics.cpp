@@ -1,28 +1,22 @@
 #include "Graphics.h"
 
-
-Graphics::Graphics(sf::RenderWindow& win)
+Graphics::Graphics(sf::RenderWindow& win, const Settings& settings)
 	:
 	win(win),
-	textureList("test.png",32,32,3,2)
+	textureList(settings),
+	spriteScale(settings.GetSpriteScale())
 {
+	textureList.LoadAll();
 }
 
-void Graphics::DrawSprite(sf::Sprite* sprite, const sf::Vector2f& pos)
-{
-	sprite->setPosition(pos);
-	win.draw(*sprite);
-}
-
-void Graphics::DrawSprite(sf::Texture* texture, const sf::Vector2f & pos)
+void Graphics::DrawSprite(const sf::Texture& texture, const sf::Vector2f& pos) const
 {
 	sf::VertexArray quad(sf::Quads, 4);
 
-	int sizeMul = 4;
-	int texWidth = texture->getSize().x;
-	int texHeight = texture->getSize().y;
-	int width = texWidth * sizeMul;
-	int height = texHeight * sizeMul;
+	const int texWidth = texture.getSize().x;
+	const int texHeight = texture.getSize().y;
+	const int width = texWidth * spriteScale;
+	const int height = texHeight * spriteScale;
 
 	quad[0].position = pos;
 	quad[1].position = sf::Vector2f(pos.x + width, pos.y);
@@ -34,25 +28,30 @@ void Graphics::DrawSprite(sf::Texture* texture, const sf::Vector2f & pos)
 	quad[2].texCoords = sf::Vector2f(float(texWidth), float(texHeight));
 	quad[3].texCoords = sf::Vector2f(0, float(texHeight));
 
-	win.draw(quad, texture);
+	win.draw(quad, &texture);
 }
 
-void Graphics::DrawSprite(const int index, const sf::Vector2f & pos)
+void Graphics::DrawSprite(const int index, const sf::Vector2f & pos) const
 {
 	DrawSprite(textureList.GetTexture(index), pos);
 }
 
-void Graphics::Clear(sf::Color& color)
+void Graphics::Clear(const sf::Color& color) const
 {
 	win.clear(color);
 }
 
-void Graphics::Display()
+void Graphics::Display() const
 {
 	win.display();
 }
 
-void Graphics::setView(sf::View view)
+void Graphics::SetView(const sf::View view) const
 {
 	win.setView(view);
+}
+
+const sf::View & Graphics::GetView() const
+{
+	return win.getView();
 }

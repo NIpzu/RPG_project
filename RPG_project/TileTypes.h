@@ -2,6 +2,9 @@
 
 enum class TileTypes : unsigned char
 {
-	empty = 0,
+	empty,
+	tree,
+	lake,
+	road,
 	count
 };

@@ -7,7 +7,7 @@ Character::Character(const sf::Vector2f & pos)
 {
 }
 
-void Character::Draw(Graphics & gfx) const
+void Character::Draw(const Graphics & gfx) const
 {
 	gfx.DrawSprite(5, pos);
 }
