@@ -42,8 +42,8 @@ void Graphics::DrawSpriteToTex(const sf::Texture& texture, const sf::Vector2f & 
 
 	const int texWidth = texture.getSize().x;
 	const int texHeight = texture.getSize().y;
-	const int width = texWidth * spriteScale;
-	const int height = texHeight * spriteScale;
+	const int width = texWidth /** spriteScale*/;
+	const int height = texHeight /* * spriteScale*/;
 
 	quad[0].position = sf::Vector2f(pos.x, pos.y);
 	quad[1].position = sf::Vector2f((pos.x + width), pos.y);
@@ -86,4 +86,11 @@ void Graphics::SetView(const sf::View view) const
 const sf::View & Graphics::GetView() const
 {
 	return win.getView();
+}
+
+void Graphics::ReSize(const sf::Event & event) const
+{
+	sf::View newView = win.getView();
+	newView.setSize(sf::Vector2f(event.size.width, event.size.height));
+	win.setView(newView);
 }

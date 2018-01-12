@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="FileAcces.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Graphics.h" />

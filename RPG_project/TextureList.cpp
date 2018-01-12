@@ -2,8 +2,8 @@
 
 TextureList::TextureList(const Settings& settings)
 	:
-	spriteWidth(settings.GetSpriteWidth()),
-	spriteHeight(settings.GetSpriteHeight()),
+	spriteWidth(settings.GetSpriteSize().x),
+	spriteHeight(settings.GetSpriteSize().y),
 	nColumns(settings.GetSpriteFileSize().x * 32 / spriteWidth),
 	nRows(settings.GetSpriteFileSize().y * 32 / spriteWidth),
 	filename(settings.GetSpriteFileName()),

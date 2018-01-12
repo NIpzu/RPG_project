@@ -37,60 +37,54 @@ void Game::Loop()
 
 void Game::UpdateScene()
 {
-	sf::Event event;
-	while (win.pollEvent(event))
-	{
-		if (event.type == sf::Event::Closed)
-		{
-			looping = false;
-		}
-		if (event.type == sf::Event::KeyPressed)
-		{
-			if (event.key.code == sf::Keyboard::Escape)
-			{
-				looping = false;
-			}
-			if (event.key.code == sf::Keyboard::Left)
-			{
-				sf::View view = gfx.GetView();
-				view.move(-10, 0);
-				gfx.SetView(view);
-			}
-			if (event.key.code == sf::Keyboard::Right)
-			{
-				sf::View view = gfx.GetView();
-				view.move(10, 0);
-				gfx.SetView(view);
-
-			}
-			if (event.key.code == sf::Keyboard::Up)
-			{
-				sf::View view = gfx.GetView();
-				view.move(0, -10);
-				gfx.SetView(view);
-
-			}
-			if (event.key.code == sf::Keyboard::Down)
-			{
-				sf::View view = gfx.GetView();
-				view.move(0, 10);
-				gfx.SetView(view);
-
-			}
-		}
-		if (event.type == sf::Event::Resized)
-		{
-			sf::FloatRect visibleArea(0.0f, 0.0f, (float)event.size.width, (float)event.size.height);
-			sf::View view(visibleArea);
-			gfx.SetView(view);
-		}
-	}
-
-
+	ProcessEvents();
 
 }
 
-void Game::DrawScene()
+void Game::DrawScene() const
 {
 	map.Draw(gfx);
+	character.Draw(gfx);
+}
+
+void Game::ProcessEvents()
+{
+	sf::Event event;
+	while (win.pollEvent(event))
+	{
+		switch (event.type)
+		{
+
+		case sf::Event::Closed:
+			looping = false;
+			break;
+
+		case sf::Event::Resized:
+		{
+			gfx.ReSize(event);
+			break;
+		}
+
+		case sf::Event::KeyPressed:
+
+			break;
+
+
+		default:
+			break;
+		}
+
+	}
+}
+
+void Game::ProcessKeyPress(const sf::Event & event)
+{
+	switch (event.key.code)
+	{
+	case sf::Keyboard::Escape:
+		looping = false;
+		break;
+	default:
+		break;
+	}
 }

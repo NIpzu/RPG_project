@@ -22,6 +22,7 @@ public:
 
 	void SetView(const sf::View view) const;
 	const sf::View& GetView() const;
+	void ReSize(const sf::Event& event) const;
 
 
 private:

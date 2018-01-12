@@ -7,8 +7,8 @@
 Map::Map(const Settings& settings, const Graphics& gfx)
 	:
 	spriteScale(settings.GetSpriteScale()),
-	spriteWidth(settings.GetSpriteWidth()),
-	spriteHeight(settings.GetSpriteHeight())
+	spriteWidth(settings.GetSpriteSize().x),
+	spriteHeight(settings.GetSpriteSize().y)
 {
 
 	sf::FileInputStream file;
@@ -62,7 +62,7 @@ Map::Map(const Settings& settings, const Graphics& gfx)
 
 }
 
-void Map::Draw(const Graphics& gfx)
+void Map::Draw(const Graphics& gfx) const
 {
 	/*sf::Vector2f center = gfx.GetView().getCenter();
 	int centerToCorner = int(std::sqrt(std::pow(gfx.GetView().getSize().x / 2, 2) + std::pow(gfx.GetView().getSize().y / 2, 2)));

@@ -10,7 +10,7 @@ class Map
 {
 public:
 	Map(const Settings& settings, const Graphics& gfx);
-	void Draw(const Graphics& gfx);
+	void Draw(const Graphics& gfx) const;
 private:
 	std::vector<TileTypes> mapVec;
 

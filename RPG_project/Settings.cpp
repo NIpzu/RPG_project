@@ -43,6 +43,8 @@ Settings::Settings(const std::string& filename)
 	}
 	if (!file.eof())
 		std::cout << "Error in settings file! File name: " << filename << std::endl;
+
+	spriteSizeXScale = sf::Vector2u(spriteSize.x * spriteScale, spriteSize.y * spriteScale);
 }
 
 sf::Vector2u Settings::GetSpriteSize() const
@@ -50,29 +52,9 @@ sf::Vector2u Settings::GetSpriteSize() const
 	return spriteSize;
 }
 
-int Settings::GetSpriteWidth() const
-{
-	return spriteSize.x;
-}
-
-int Settings::GetSpriteHeight() const
-{
-	return spriteSize.y;
-}
-
 sf::Vector2u Settings::GetSpriteFileSize() const
 {
 	return spriteFileSize;
-}
-
-int Settings::GetSpriteFileWidth() const
-{
-	return spriteFileSize.x;
-}
-
-int Settings::GetSpriteFileHeight() const
-{
-	return spriteFileSize.y;
 }
 
 sf::Vector2u Settings::GetWindowSize() const
@@ -80,19 +62,14 @@ sf::Vector2u Settings::GetWindowSize() const
 	return windowSize;
 }
 
-int Settings::GetWindowWidth() const
-{
-	return windowSize.x;
-}
-
-int Settings::GetWindowHeight() const
-{
-	return windowSize.y;
-}
-
 int Settings::GetSpriteScale() const
 {
 	return spriteScale;
+}
+
+sf::Vector2u Settings::GetSpriteSizeXScale() const
+{
+	return spriteSizeXScale;
 }
 
 std::string Settings::GetSpriteFileName() const
