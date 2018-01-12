@@ -9,7 +9,7 @@
 class Map
 {
 public:
-	Map(const Settings& settings);
+	Map(const Settings& settings, const Graphics& gfx);
 	void Draw(const Graphics& gfx);
 private:
 	std::vector<TileTypes> mapVec;
@@ -23,6 +23,7 @@ private:
 	{
 		return char(type) >= 0b1000000;
 	}
+	sf::RenderTexture tex;
 private:
 	int mapWidth;
 	int mapHeight;

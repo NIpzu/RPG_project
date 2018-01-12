@@ -4,8 +4,8 @@ TextureList::TextureList(const Settings& settings)
 	:
 	spriteWidth(settings.GetSpriteWidth()),
 	spriteHeight(settings.GetSpriteHeight()),
-	nColumns(3 * 32/ spriteWidth),
-	nRows(2 * 32 / spriteWidth),
+	nColumns(settings.GetSpriteFileSize().x * 32 / spriteWidth),
+	nRows(settings.GetSpriteFileSize().y * 32 / spriteWidth),
 	filename(settings.GetSpriteFileName()),
 	indexToVector(nRows * nColumns, -1)
 {

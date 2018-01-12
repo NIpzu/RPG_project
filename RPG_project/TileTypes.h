@@ -5,6 +5,8 @@ enum class TileTypes : unsigned char
 	empty,
 	tree,
 	lake,
-	road,
+	roadvertical,
+	roadhorizontal,
+	roadcross,
 	count
 };

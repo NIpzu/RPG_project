@@ -14,6 +14,9 @@ public:
 	void DrawSprite(const sf::Texture& texture, const sf::Vector2f& pos) const;
 	void DrawSprite(const int index, const sf::Vector2f& pos) const;
 
+	void DrawSpriteToTex(const sf::Texture& texture, const sf::Vector2f& pos, sf::RenderTarget& target) const;
+	void DrawSpriteToTex(const int index, const sf::Vector2f& pos, sf::RenderTarget& target) const;
+
 	void Clear(const sf::Color& color = sf::Color(0, 0, 0)) const;
 	void Display() const;
 

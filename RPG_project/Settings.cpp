@@ -36,6 +36,10 @@ Settings::Settings(const std::string& filename)
 		{
 			file >> windowName;
 		}
+		else if (str == "[MapFileName]")
+		{
+			file >> mapFileName;
+		}
 	}
 	if (!file.eof())
 		std::cout << "Error in settings file! File name: " << filename << std::endl;

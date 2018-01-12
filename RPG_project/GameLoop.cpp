@@ -4,7 +4,7 @@ Game::Game(sf::Window& win, Graphics& gfx, const Settings& settings)
 	:
 	win(win),
 	gfx(gfx),
-	map(settings)
+	map(settings,gfx)
 {
 }
 
@@ -30,8 +30,9 @@ void Game::Loop()
 		LoopOnce();
 	}
 	std::cout << "Average frametime:" << float(updates) / passed.asSeconds();
-	std::cin.clear();
-	std::cin.get();
+	sf::sleep(sf::seconds(1));
+	//std::cin.clear();
+	//std::cin.get();
 }
 
 void Game::UpdateScene()
@@ -79,10 +80,8 @@ void Game::UpdateScene()
 		}
 		if (event.type == sf::Event::Resized)
 		{
-			// update the view to the new size of the window
 			sf::FloatRect visibleArea(0.0f, 0.0f, (float)event.size.width, (float)event.size.height);
 			sf::View view(visibleArea);
-			view.setRotation(45);
 			gfx.SetView(view);
 		}
 	}

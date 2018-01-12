@@ -1,6 +1,6 @@
 [SpriteFileName] Sprites.png
-[SpriteFileSize] 3 2
+[SpriteFileSize] 4 4
 [SpriteSize] 32 32
-[MapSize] 4 4
 [SpriteScale] 4
-[WindowSize] 1000 100
+[WindowSize] 1000 1000
+[MapFileName] test.dat
