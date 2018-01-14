@@ -91,6 +91,6 @@ const sf::View & Graphics::GetView() const
 void Graphics::ReSize(const sf::Event & event) const
 {
 	sf::View newView = win.getView();
-	newView.setSize(sf::Vector2f(event.size.width, event.size.height));
+	newView.setSize(sf::Vector2f(float(event.size.width), float(event.size.height)));
 	win.setView(newView);
 }

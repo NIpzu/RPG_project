@@ -4,7 +4,8 @@ Game::Game(sf::Window& win, Graphics& gfx, const Settings& settings)
 	:
 	win(win),
 	gfx(gfx),
-	map(settings,gfx)
+	map(settings,gfx),
+	settings(settings)
 {
 }
 
@@ -44,7 +45,7 @@ void Game::UpdateScene()
 void Game::DrawScene() const
 {
 	map.Draw(gfx);
-	character.Draw(gfx);
+	character.Draw(gfx,settings);
 }
 
 void Game::ProcessEvents()

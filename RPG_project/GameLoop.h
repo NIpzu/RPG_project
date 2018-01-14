@@ -32,4 +32,5 @@ private:
 private:
 	Graphics& gfx;
 	sf::Window& win;
+	const Settings& settings;
 };
