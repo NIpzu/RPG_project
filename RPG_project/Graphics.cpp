@@ -94,3 +94,13 @@ void Graphics::ReSize(const sf::Event & event) const
 	newView.setSize(sf::Vector2f(float(event.size.width), float(event.size.height)));
 	win.setView(newView);
 }
+
+void Graphics::SetSpriteScale(const int newScale)
+{
+	spriteScale = newScale;
+}
+
+int Graphics::GetSpriteScale() const
+{
+	return spriteScale;
+}

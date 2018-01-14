@@ -14,19 +14,20 @@ public:
 
 private:
 	bool looping = false;
-
+	sf::Time dt;
 	sf::Time passed;
 	sf::Clock clock;
 	int updates = 0;
 	Map map;
 	Character character{ {400,300} };
 
+
 private:
 	void UpdateScene();
 	void DrawScene() const;
 	void ProcessEvents();
 	void ProcessKeyPress(const sf::Event& event);
-
+	void CentralizeToCharacter() const;
 
 
 private:

@@ -19,7 +19,8 @@ int main() // Where it all begins
 
 	sf::RenderWindow win(sf::VideoMode(settings.GetWindowSize().x, settings.GetWindowSize().y), settings.GetWindowName(), sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize,sf::ContextSettings(0)); // create window
 	win.setFramerateLimit(0); // disables framerate limit
-	win.setVerticalSyncEnabled(true); 
+	win.setVerticalSyncEnabled(false); 
+	win.setMouseCursorVisible(false);
 	Graphics gfx(win,settings);
 	Game game(win, gfx, settings);
 	

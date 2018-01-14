@@ -41,7 +41,6 @@ Map::Map(const Settings& settings, const Graphics& gfx)
 			std::cout << "There were excess bytes in the map file!" << std::endl;
 		}
 		tex.create(spriteWidth * mapWidth, spriteHeight * mapHeight);
-		//tex.setView(sf::View(sf::Rect<float>(0, 0, spriteScale * spriteWidth, spriteScale * spriteHeight)));
 
 		for (int x = 0; x < mapWidth; x++)
 		{
@@ -64,14 +63,5 @@ Map::Map(const Settings& settings, const Graphics& gfx)
 
 void Map::Draw(const Graphics& gfx) const
 {
-	/*sf::Vector2f center = gfx.GetView().getCenter();
-	int centerToCorner = int(std::sqrt(std::pow(gfx.GetView().getSize().x / 2, 2) + std::pow(gfx.GetView().getSize().y / 2, 2)));
-	for (int x = std::max((int(center.x) - centerToCorner) / (spriteScale * spriteWidth),0); x <= std::min((int(center.x) + centerToCorner) / (spriteScale * spriteWidth), int(mapWidth) - 1); x++)
-	{
-		for (int y = std::max((int(center.y) - centerToCorner) / (spriteScale * spriteHeight),0); y <= std::min((int(center.y) + centerToCorner) / (spriteScale * spriteHeight),mapHeight - 1); y++)
-		{
-			gfx.DrawSprite((char)mapVec[y * mapWidth + x], sf::Vector2f(float(x * spriteScale * spriteWidth),float( y * spriteScale * spriteHeight)));
-		}
-	}*/
 	gfx.DrawSprite(tex.getTexture(), sf::Vector2f( 0.0f,0.0f ));
 }

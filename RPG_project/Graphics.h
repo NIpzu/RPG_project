@@ -23,6 +23,8 @@ public:
 	void SetView(const sf::View view) const;
 	const sf::View& GetView() const;
 	void ReSize(const sf::Event& event) const;
+	void SetSpriteScale(const int newScale);
+	int GetSpriteScale() const;
 
 
 private:

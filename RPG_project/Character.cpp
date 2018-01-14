@@ -9,6 +9,32 @@ Character::Character(const sf::Vector2f & pos)
 void Character::Draw(const Graphics & gfx, const Settings& settings) const
 {
 	gfx.DrawSprite(15, pos);
-	sf::View newView = gfx.GetView();
-	newView.setCenter(pos + (sf::Vector2f(settings.GetSpriteSizeXScale()) / 2.0f));
+}
+
+void Character::Update(const float dt)
+{
+	sf::Vector2f dir(0, 0);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		dir.y += 1;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		dir.y -= 1;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		dir.x += 1;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		dir.x -= 1;
+
+	float length = sqrt((dir.x * dir.x) + (dir.y * dir.y));
+	if (length != 0)
+		dir = sf::Vector2f(dir.x / length, dir.y / length);
+
+	pos += dir * dt * vel;
+}
+
+sf::Vector2f Character::GetPos() const
+{
+	return pos;
 }
