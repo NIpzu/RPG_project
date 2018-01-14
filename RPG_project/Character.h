@@ -1,6 +1,8 @@
 #pragma once
 #include "Graphics.h"
 #include <SFML\System.hpp>
+#include <memory>
+#include "Weapon.h"
 
 class Character
 {
@@ -12,4 +14,5 @@ public:
 private:
 	sf::Vector2f pos;
 	float vel = 100;
+	std::unique_ptr<Weapon> weapon;
 };
