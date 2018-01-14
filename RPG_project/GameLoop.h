@@ -19,9 +19,9 @@ private:
 	sf::Clock clock;
 	int updates = 0;
 	Map map;
-	Character character{ {400,300} };
+	Character character{ {0,0} };
 
-
+	float screenScale = 1;
 private:
 	void UpdateScene();
 	void DrawScene() const;

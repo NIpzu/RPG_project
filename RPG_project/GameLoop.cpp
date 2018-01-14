@@ -15,7 +15,7 @@ void Game::LoopOnce()
 	passed += dt;
 	++updates;
 
-	gfx.Clear(sf::Color(69,69,69)/* Insert background color */);
+	gfx.Clear(sf::Color(69,69,69));
 
 	UpdateScene();
 
@@ -65,6 +65,7 @@ void Game::ProcessEvents()
 		case sf::Event::Resized:
 		{
 			gfx.ReSize(event);
+			CentralizeToCharacter();
 			break;
 		}
 
@@ -76,8 +77,19 @@ void Game::ProcessEvents()
 
 		case sf::Event::MouseWheelScrolled:
 		{
-			int delta = std::round(event.mouseWheelScroll.delta);
-			gfx.SetSpriteScale(std::max(gfx.GetSpriteScale() + delta,1));
+			sf::View newView(gfx.GetView());
+			if (std::round(event.mouseWheelScroll.delta) < 0)
+			{
+				screenScale--;
+			//newView.setSize(newView.getSize() / 0.5f);
+			}
+			if (std::round(event.mouseWheelScroll.delta) > 0)
+			{
+				screenScale++;
+				//newView.setSize(newView.getSize() / 2.0f);
+			}
+			newView.setSize(sf::Vector2f(gfx.GetWindowSize()) / screenScale);
+			gfx.SetView(newView);
 			break;
 		}
 
@@ -106,6 +118,6 @@ void Game::ProcessKeyPress(const sf::Event & event)
 void Game::CentralizeToCharacter() const
 {
 	sf::View newView = gfx.GetView();
-	newView.setCenter(character.GetPos() + (sf::Vector2f(settings.GetSpriteSizeXScale()) / 2.0f));
+	newView.setCenter(character.GetPos() + sf::Vector2f(settings.GetSpriteSize()) / 2.0f);
 	gfx.SetView(newView);
 }

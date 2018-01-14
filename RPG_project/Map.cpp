@@ -6,7 +6,6 @@
 
 Map::Map(const Settings& settings, const Graphics& gfx)
 	:
-	spriteScale(settings.GetSpriteScale()),
 	spriteWidth(settings.GetSpriteSize().x),
 	spriteHeight(settings.GetSpriteSize().y)
 {

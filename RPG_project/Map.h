@@ -27,7 +27,6 @@ private:
 private:
 	int mapWidth;
 	int mapHeight;
-	int spriteScale;
 	int spriteWidth;
 	int spriteHeight;
 };

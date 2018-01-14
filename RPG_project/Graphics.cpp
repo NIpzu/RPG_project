@@ -3,8 +3,7 @@
 Graphics::Graphics(sf::RenderWindow& win, const Settings& settings)
 	:
 	win(win),
-	textureList(settings),
-	spriteScale(settings.GetSpriteScale())
+	textureList(settings)
 {
 	textureList.LoadAll();
 }
@@ -15,13 +14,11 @@ void Graphics::DrawSprite(const sf::Texture& texture, const sf::Vector2f& pos) c
 
 	const int texWidth = texture.getSize().x;
 	const int texHeight = texture.getSize().y;
-	const int width = texWidth  * spriteScale;
-	const int height = texHeight  * spriteScale;
 
 	quad[0].position = sf::Vector2f(pos.x, pos.y);
-	quad[1].position = sf::Vector2f((pos.x + width), pos.y);
-	quad[2].position = sf::Vector2f((pos.x + width), (pos.y + height));
-	quad[3].position = sf::Vector2f(pos.x, (pos.y + height));
+	quad[1].position = sf::Vector2f((pos.x + texWidth), pos.y);
+	quad[2].position = sf::Vector2f((pos.x + texWidth), (pos.y + texHeight));
+	quad[3].position = sf::Vector2f(pos.x, (pos.y + texHeight));
 
 	quad[0].texCoords = sf::Vector2f(0,0);
 	quad[1].texCoords = sf::Vector2f(float(texWidth), 0);
@@ -42,23 +39,16 @@ void Graphics::DrawSpriteToTex(const sf::Texture& texture, const sf::Vector2f & 
 
 	const int texWidth = texture.getSize().x;
 	const int texHeight = texture.getSize().y;
-	const int width = texWidth /** spriteScale*/;
-	const int height = texHeight /* * spriteScale*/;
 
 	quad[0].position = sf::Vector2f(pos.x, pos.y);
-	quad[1].position = sf::Vector2f((pos.x + width), pos.y);
-	quad[2].position = sf::Vector2f((pos.x + width), (pos.y + height));
-	quad[3].position = sf::Vector2f(pos.x, (pos.y + height));
+	quad[1].position = sf::Vector2f((pos.x + texWidth), pos.y);
+	quad[2].position = sf::Vector2f((pos.x + texWidth), (pos.y + texHeight));
+	quad[3].position = sf::Vector2f(pos.x, (pos.y + texHeight));
 
 	quad[0].texCoords = sf::Vector2f(0, 0);
 	quad[1].texCoords = sf::Vector2f(float(texWidth), 0);
 	quad[2].texCoords = sf::Vector2f(float(texWidth), float(texHeight));
 	quad[3].texCoords = sf::Vector2f(0, float(texHeight));
-
-	//quad[0].texCoords = sf::Vector2f(float(texWidth), float(texHeight));
-	//quad[1].texCoords = sf::Vector2f(0, float(texWidth));
-	//quad[2].texCoords = sf::Vector2f(0,0);
-	//quad[3].texCoords = sf::Vector2f(float(texWidth), 0);
 
 	target.draw(quad, &texture);
 }
@@ -95,12 +85,7 @@ void Graphics::ReSize(const sf::Event & event) const
 	win.setView(newView);
 }
 
-void Graphics::SetSpriteScale(const int newScale)
+sf::Vector2u Graphics::GetWindowSize() const
 {
-	spriteScale = newScale;
-}
-
-int Graphics::GetSpriteScale() const
-{
-	return spriteScale;
+	return win.getSize();
 }
