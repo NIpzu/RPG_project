@@ -4,10 +4,10 @@
 #include "Character.h"
 #include "Map.h"
 
-class Game
+class GameLoop
 {
 public:
-	Game(sf::Window& win, Graphics& gfx, const Settings& settings);
+	GameLoop(sf::Window& win, Graphics& gfx, const Settings& settings);
 	void LoopOnce();
 	void Loop();
 

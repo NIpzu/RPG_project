@@ -123,22 +123,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BasicWeapons.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="FileAcces.cpp" />
     <ClCompile Include="GameLoop.cpp" />
+    <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="TextureList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicWeapons.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FileAcces.h" />
     <ClInclude Include="GameLoop.h" />
+    <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="TextureList.h" />

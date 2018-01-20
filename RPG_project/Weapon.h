@@ -1,11 +1,13 @@
 #pragma once
 
-class Weapon
+#include "Item.h"
+
+class Weapon : public Item
 {
 public:
-	Weapon();
 	virtual ~Weapon() = default;
-
+	virtual void Use() = 0;
 private:
-
+	int baseDMG;
+	float durability;
 };

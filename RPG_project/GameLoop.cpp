@@ -1,6 +1,6 @@
 #include "GameLoop.h"
 
-Game::Game(sf::Window& win, Graphics& gfx, const Settings& settings)
+GameLoop::GameLoop(sf::Window& win, Graphics& gfx, const Settings& settings)
 	:
 	win(win),
 	gfx(gfx),
@@ -9,7 +9,7 @@ Game::Game(sf::Window& win, Graphics& gfx, const Settings& settings)
 {
 }
 
-void Game::LoopOnce()
+void GameLoop::LoopOnce()
 {
 	dt = clock.restart();
 	passed += dt;
@@ -24,31 +24,32 @@ void Game::LoopOnce()
 	gfx.Display();
 }
 
-void Game::Loop()
+void GameLoop::Loop()
 {
 	looping = true;
 	while (looping)
 	{
 		LoopOnce();
 	}
-	std::cout << "Average frametime:" << float(updates) / passed.asSeconds();
+	std::cout << "Average frames per second: " << float(updates) / passed.asSeconds() << " fps" << std::endl;
+	std::cout << "Average frametime: " << passed.asSeconds() / float(updates) * 1000 << " ms" << std::endl;
 	sf::sleep(sf::seconds(1));
 }
 
-void Game::UpdateScene()
+void GameLoop::UpdateScene()
 {
 	ProcessEvents();
 	character.Update(dt.asSeconds());
 }
 
-void Game::DrawScene() const
+void GameLoop::DrawScene() const
 {
 	CentralizeToCharacter();
 	map.Draw(gfx);
 	character.Draw(gfx,settings);
 }
 
-void Game::ProcessEvents()
+void GameLoop::ProcessEvents()
 {
 	sf::Event event;
 	while (win.pollEvent(event))
@@ -100,7 +101,7 @@ void Game::ProcessEvents()
 	}
 }
 
-void Game::ProcessKeyPress(const sf::Event & event)
+void GameLoop::ProcessKeyPress(const sf::Event & event)
 {
 	switch (event.key.code)
 	{
@@ -115,7 +116,7 @@ void Game::ProcessKeyPress(const sf::Event & event)
 	}
 }
 
-void Game::CentralizeToCharacter() const
+void GameLoop::CentralizeToCharacter() const
 {
 	sf::View newView = gfx.GetView();
 	newView.setCenter(character.GetPos() + sf::Vector2f(settings.GetSpriteSize()) / 2.0f);
