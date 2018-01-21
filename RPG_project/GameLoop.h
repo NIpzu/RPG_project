@@ -19,7 +19,7 @@ private:
 	sf::Clock clock;
 	int updates = 0;
 	Map map;
-	Character character{ {0,0} };
+	Character character;
 
 	float screenScale = 1;
 private:
@@ -29,7 +29,6 @@ private:
 	void ProcessKeyPress(const sf::Event& event);
 	void CentralizeToCharacter() const;
 
-	int counter = 0;
 private:
 	Graphics& gfx;
 	sf::Window& win;

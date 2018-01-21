@@ -36,6 +36,10 @@ Settings::Settings(const std::string& filename)
 		{
 			file >> mapFileName;
 		}
+		else if (str == "[ChracterSpriteFileName]")
+		{
+			file >> chracterSpriteFileName;
+		}
 	}
 	if (!file.eof())
 		std::cout << "Error in settings file! File name: " << filename << std::endl;
@@ -61,6 +65,11 @@ sf::Vector2u Settings::GetWindowSize() const
 std::string Settings::GetSpriteFileName() const
 {
 	return spriteFileName;
+}
+
+std::string Settings::GetChracterSpriteFileName() const
+{
+	return chracterSpriteFileName;
 }
 
 std::string Settings::GetMapFileName() const

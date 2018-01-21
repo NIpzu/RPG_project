@@ -1,14 +1,15 @@
 #include "Character.h"
 
-Character::Character(const sf::Vector2f & pos)
+Character::Character(const sf::Vector2f & pos, const Settings& settings)
 	:
 	pos(pos)
 {
+	textureSheet.loadFromFile(settings.GetChracterSpriteFileName());
 }
 
-void Character::Draw(const Graphics & gfx, const Settings& settings) const
+void Character::Draw(const Graphics & gfx) const
 {
-	gfx.DrawSprite(15, pos);
+	gfx.DrawSprite(textureSheet, pos);
 }
 
 void Character::Update(const float dt)

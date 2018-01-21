@@ -6,7 +6,8 @@ GameLoop::GameLoop(sf::Window& win, Graphics& gfx, const Settings& settings)
 	win(win),
 	gfx(gfx),
 	map(settings,gfx),
-	settings(settings)
+	settings(settings),
+	character({ { 0,0 }, settings })
 {
 }
 
@@ -41,28 +42,13 @@ void GameLoop::UpdateScene()
 {
 	ProcessEvents();
 	character.Update(dt.asSeconds());
-	counter+= 3;
 }
 
 void GameLoop::DrawScene() const
 {
 	CentralizeToCharacter();
 	map.Draw(gfx);
-	character.Draw(gfx,settings);
-
-
-	CircleSector area({ 100,100 }, 100, counter, 100);
-
-	for (int x = 0; x < 200; x++)
-	{
-		for (int y = 0; y < 200; y++)
-		{
-			if (area.isInArea(sf::Vector2f(x, y)))
-			{
-				gfx.DrawPoint(sf::Vector2f(x, y));
-			}
-		}
-	}
+	character.Draw(gfx);
 }
 
 void GameLoop::ProcessEvents()
@@ -98,12 +84,10 @@ void GameLoop::ProcessEvents()
 			if (std::round(event.mouseWheelScroll.delta) < 0)
 			{
 				screenScale--;
-			//newView.setSize(newView.getSize() / 0.5f);
 			}
 			if (std::round(event.mouseWheelScroll.delta) > 0)
 			{
 				screenScale++;
-				//newView.setSize(newView.getSize() / 2.0f);
 			}
 			newView.setSize(sf::Vector2f(gfx.GetWindowSize()) / screenScale);
 			gfx.SetView(newView);

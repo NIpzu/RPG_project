@@ -8,3 +8,10 @@ public:
 private:
 
 };
+
+class Spear : public Weapon
+{
+public:
+private:
+
+};
