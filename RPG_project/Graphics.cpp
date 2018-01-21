@@ -89,3 +89,10 @@ sf::Vector2u Graphics::GetWindowSize() const
 {
 	return win.getSize();
 }
+
+void Graphics::DrawPoint(const sf::Vector2f & pos) const
+{
+	sf::VertexArray point(sf::Points, 1);
+	point[0].position = pos;
+	win.draw(point);
+}

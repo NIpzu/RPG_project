@@ -29,7 +29,7 @@ private:
 	void ProcessKeyPress(const sf::Event& event);
 	void CentralizeToCharacter() const;
 
-
+	int counter = 0;
 private:
 	Graphics& gfx;
 	sf::Window& win;

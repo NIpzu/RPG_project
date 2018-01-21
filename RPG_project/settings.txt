@@ -2,5 +2,5 @@
 [SpriteFileSize] 4 4
 [SpriteSize] 32 32
 [SpriteScale] 4
-[WindowSize] 800 800
+[WindowSize] 800 600
 [MapFileName] test.dat

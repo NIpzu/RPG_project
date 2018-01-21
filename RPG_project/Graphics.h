@@ -25,6 +25,10 @@ public:
 	void ReSize(const sf::Event& event) const;
 	sf::Vector2u GetWindowSize() const;
 
+
+
+
+	void DrawPoint(const sf::Vector2f& pos) const;
 private:
 	sf::RenderWindow& win;
 	TextureList textureList;

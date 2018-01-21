@@ -1,5 +1,2 @@
 #include "BasicWeapons.h"
-
-void Sword::Use()
-{
-}
+#include "Area.h"
