@@ -5,12 +5,17 @@
 
 Map::Map(const Settings& settings, const Graphics& gfx)
 	:
-	spriteWidth(settings.GetSpriteSize().x),
-	spriteHeight(settings.GetSpriteSize().y)
+	sprite(sf::Quads, 4)
 {
+
+
+	const int spriteWidth = settings.GetSpriteSize().x;
+	const int spriteHeight = settings.GetSpriteSize().y;
 
 	sf::FileInputStream file;
 	file.open(settings.GetMapFileName());
+
+	spriteSheet.loadFromFile(settings.GetMapSpriteFileName());
 
 	auto filesize = file.getSize();
 
@@ -25,11 +30,11 @@ Map::Map(const Settings& settings, const Graphics& gfx)
 			mapHeight = 0;
 		}
 
-		mapHeight = (int(mapVec[mapVec.size() - 2]) << 8) | unsigned char(mapVec[mapVec.size() - 1]);
+		mapHeight = (int(mapVec[mapVec.size() - 2]) << 8) | mapVec[mapVec.size() - 1];
 		mapVec.pop_back();
 		mapVec.pop_back();
 
-		mapWidth = (int(mapVec[mapVec.size() - 2]) << 8) | unsigned char(mapVec[mapVec.size() - 1]);
+		mapWidth = (int(mapVec[mapVec.size() - 2]) << 8) | mapVec[mapVec.size() - 1];
 		mapVec.pop_back();
 		mapVec.pop_back();
 
@@ -40,15 +45,32 @@ Map::Map(const Settings& settings, const Graphics& gfx)
 		}
 		tex.create(spriteWidth * mapWidth, spriteHeight * mapHeight);
 
+
+		sf::VertexArray vArray(sf::Quads, 4 * mapWidth * mapHeight);
+
+		sf::Clock timer;
+		timer.restart();
 		for (int x = 0; x < mapWidth; x++)
 		{
 			for (int y = 0; y < mapHeight; y++)
 			{
-				gfx.DrawSpriteToTex((char)mapVec[y * mapWidth + x], sf::Vector2f(float(x * spriteWidth), float(y * spriteHeight)), tex);
+				const sf::Vector2f pos = sf::Vector2f(float(x * spriteWidth), float(y * spriteHeight));
+				vArray[4 * (y * mapWidth + x)].position = pos;
+				vArray[4 * (y * mapWidth + x) + 1].position = pos + sf::Vector2f((float)spriteWidth, 0.0f);
+				vArray[4 * (y * mapWidth + x) + 2].position = pos + sf::Vector2f((float)spriteWidth, (float)spriteHeight);
+				vArray[4 * (y * mapWidth + x) + 3].position = pos + sf::Vector2f(0.0f, (float)spriteHeight);
+
+
+				const sf::Vector2f texPos = sf::Vector2f(float(mapVec[y * mapWidth + x] % mapWidth * spriteWidth),float( mapVec[y * mapWidth + x] / mapWidth * spriteHeight));
+				vArray[4 * (y * mapWidth + x)].texCoords = texPos;
+				vArray[4 * (y * mapWidth + x) + 1].texCoords = texPos + sf::Vector2f((float)spriteWidth, 0.0f);
+				vArray[4 * (y * mapWidth + x) + 2].texCoords = texPos + sf::Vector2f((float)spriteWidth, (float)spriteHeight);
+				vArray[4 * (y * mapWidth + x) + 3].texCoords = texPos + sf::Vector2f(0.0f, (float)spriteHeight);
 			}
 		}
-
+		tex.draw(vArray,&spriteSheet);
 		tex.display();
+		std::cout << timer.restart().asMicroseconds() << std::endl;
 
 	}
 	else
@@ -56,10 +78,18 @@ Map::Map(const Settings& settings, const Graphics& gfx)
 		std::cout << "Can not find file " << settings.GetMapFileName() << "!" << std::endl;
 	}
 
+	sprite[0].position = sf::Vector2f(0.0f, 0.0f);
+	sprite[1].position = sf::Vector2f(float(mapWidth * gfx.GetSpriteSize().x), 0.0f);
+	sprite[2].position = sf::Vector2f(float(mapWidth * gfx.GetSpriteSize().x), float(mapHeight * gfx.GetSpriteSize().y));
+	sprite[3].position = sf::Vector2f(0.0f, float(mapHeight * gfx.GetSpriteSize().y));
 
+	sprite[0].texCoords = sf::Vector2f(0.0f, 0.0f);
+	sprite[1].texCoords = sf::Vector2f((float)tex.getTexture().getSize().x, 0.0f);
+	sprite[2].texCoords = sf::Vector2f((float)tex.getTexture().getSize().x, (float)tex.getTexture().getSize().y);
+	sprite[3].texCoords = sf::Vector2f(0.0f, (float)tex.getTexture().getSize().y);
 }
 
 void Map::Draw(const Graphics& gfx) const
 {
-	gfx.DrawSprite(tex.getTexture(), sf::Vector2f( 0.0f,0.0f ));
+	gfx.GetRenderTarget().draw(sprite, &tex.getTexture());
 }

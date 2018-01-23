@@ -11,11 +11,11 @@ public:
 	Graphics(sf::RenderWindow& win, const Settings& settings);
 
 public:
-	void DrawSprite(const sf::Texture& texture, const sf::Vector2f& pos) const;
-	void DrawSprite(const int index, const sf::Vector2f& pos) const;
+	//void DrawSprite(const sf::Texture& texture, const sf::Vector2f& pos) const;
+	//void DrawSprite(const int index, const sf::Vector2f& pos) const;
 
-	void DrawSpriteToTex(const sf::Texture& texture, const sf::Vector2f& pos, sf::RenderTarget& target) const;
-	void DrawSpriteToTex(const int index, const sf::Vector2f& pos, sf::RenderTarget& target) const;
+//	void DrawSpriteToTex(const sf::Texture& texture, const sf::Vector2f& pos, sf::RenderTarget& target) const;
+	//void DrawSpriteToTex(const int index, const sf::Vector2f& pos, sf::RenderTarget& target) const;
 
 	void Clear(const sf::Color& color = sf::Color(0, 0, 0)) const;
 	void Display() const;
@@ -25,11 +25,12 @@ public:
 	void ReSize(const sf::Event& event) const;
 	sf::Vector2u GetWindowSize() const;
 
-
-
+	sf::Vector2u GetSpriteSize() const;
+	sf::RenderTarget& GetRenderTarget() const;
 
 	void DrawPoint(const sf::Vector2f& pos) const;
 private:
+	sf::Vector2u spriteSize;
 	sf::RenderWindow& win;
-	TextureList textureList;
+	//TextureList textureList;
 };

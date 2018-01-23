@@ -71,9 +71,6 @@
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TileTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextureList.h">
       <Filter>Header Files</Filter>
     </ClInclude>

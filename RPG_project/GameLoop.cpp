@@ -44,7 +44,7 @@ void GameLoop::UpdateScene()
 	character.Update(dt.asSeconds());
 }
 
-void GameLoop::DrawScene() const
+void GameLoop::DrawScene()
 {
 	CentralizeToCharacter();
 	map.Draw(gfx);
@@ -89,6 +89,7 @@ void GameLoop::ProcessEvents()
 			{
 				screenScale++;
 			}
+			screenScale = std::max(1.0f, screenScale);
 			newView.setSize(sf::Vector2f(gfx.GetWindowSize()) / screenScale);
 			gfx.SetView(newView);
 			break;

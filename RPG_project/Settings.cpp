@@ -40,6 +40,10 @@ Settings::Settings(const std::string& filename)
 		{
 			file >> chracterSpriteFileName;
 		}
+		else if (str == "[MapSpriteFileName]")
+		{
+			file >> mapSpriteFileName;
+		}
 	}
 	if (!file.eof())
 		std::cout << "Error in settings file! File name: " << filename << std::endl;
@@ -70,6 +74,11 @@ std::string Settings::GetSpriteFileName() const
 std::string Settings::GetChracterSpriteFileName() const
 {
 	return chracterSpriteFileName;
+}
+
+std::string Settings::GetMapSpriteFileName() const
+{
+	return mapSpriteFileName;
 }
 
 std::string Settings::GetMapFileName() const

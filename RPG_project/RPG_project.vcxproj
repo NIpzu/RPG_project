@@ -154,7 +154,6 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="TextureList.h" />
-    <ClInclude Include="TileTypes.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>

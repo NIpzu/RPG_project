@@ -3,11 +3,12 @@
 Graphics::Graphics(sf::RenderWindow& win, const Settings& settings)
 	:
 	win(win),
-	textureList(settings)
+	//textureList(settings),
+	spriteSize(settings.GetSpriteSize())
 {
-	textureList.LoadAll();
+	//textureList.LoadAll();
 }
-
+/*
 void Graphics::DrawSprite(const sf::Texture& texture, const sf::Vector2f& pos) const
 {
 	sf::VertexArray quad(sf::Quads, 4);
@@ -57,7 +58,7 @@ void Graphics::DrawSpriteToTex(const int index, const sf::Vector2f & pos, sf::Re
 {
 	DrawSpriteToTex(textureList.GetTexture(index), pos, target);
 }
-
+*/
 void Graphics::Clear(const sf::Color& color) const
 {
 	win.clear(color);
@@ -73,7 +74,7 @@ void Graphics::SetView(const sf::View view) const
 	win.setView(view);
 }
 
-const sf::View & Graphics::GetView() const
+const sf::View& Graphics::GetView() const
 {
 	return win.getView();
 }
@@ -88,6 +89,16 @@ void Graphics::ReSize(const sf::Event & event) const
 sf::Vector2u Graphics::GetWindowSize() const
 {
 	return win.getSize();
+}
+
+sf::Vector2u Graphics::GetSpriteSize() const
+{
+	return spriteSize;
+}
+
+sf::RenderTarget& Graphics::GetRenderTarget() const
+{
+	return win;
 }
 
 void Graphics::DrawPoint(const sf::Vector2f & pos) const

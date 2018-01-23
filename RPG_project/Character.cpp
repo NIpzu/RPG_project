@@ -1,15 +1,25 @@
 #include "Character.h"
 
-Character::Character(const sf::Vector2f & pos, const Settings& settings)
+Character::Character(const sf::Vector2f& pos, const Settings& settings)
 	:
 	pos(pos)
 {
 	textureSheet.loadFromFile(settings.GetChracterSpriteFileName());
 }
 
-void Character::Draw(const Graphics & gfx) const
+void Character::Draw(const Graphics& gfx)
 {
-	gfx.DrawSprite(textureSheet, pos);
+	sprite[0].position = pos;
+	sprite[1].position = pos + sf::Vector2f((float)gfx.GetSpriteSize().x, 0.0f);
+	sprite[2].position = pos + sf::Vector2f(gfx.GetSpriteSize());
+	sprite[3].position = pos + sf::Vector2f(0.0f, (float)gfx.GetSpriteSize().y);
+
+	sprite[0].texCoords = { 0,0 };
+	sprite[1].texCoords = sf::Vector2f((float)gfx.GetSpriteSize().x, 0.0f);
+	sprite[2].texCoords = sf::Vector2f(gfx.GetSpriteSize());
+	sprite[3].texCoords = sf::Vector2f(0.0f, (float)gfx.GetSpriteSize().y);
+
+	gfx.GetRenderTarget().draw(sprite, &textureSheet);
 }
 
 void Character::Update(const float dt)

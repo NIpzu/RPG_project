@@ -3,4 +3,4 @@
 [SpriteSize] 32 32
 [SpriteScale] 4
 [WindowSize] 800 600
-[MapFileName] test.dat
+[MapFileName] Map.dat

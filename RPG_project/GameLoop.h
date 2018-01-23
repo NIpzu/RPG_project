@@ -24,7 +24,7 @@ private:
 	float screenScale = 1;
 private:
 	void UpdateScene();
-	void DrawScene() const;
+	void DrawScene();
 	void ProcessEvents();
 	void ProcessKeyPress(const sf::Event& event);
 	void CentralizeToCharacter() const;
