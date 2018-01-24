@@ -137,7 +137,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Settings.cpp" />
-    <ClCompile Include="TextureList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Angle.h" />
@@ -153,7 +152,6 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Settings.h" />
-    <ClInclude Include="TextureList.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>

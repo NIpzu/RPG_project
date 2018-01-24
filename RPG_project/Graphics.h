@@ -2,7 +2,6 @@
 
 #include <SFML\Graphics.hpp>
 #include <string>
-#include "TextureList.h"
 #include "Settings.h"
 
 class Graphics

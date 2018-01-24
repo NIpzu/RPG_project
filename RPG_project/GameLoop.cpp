@@ -1,5 +1,6 @@
 #include "GameLoop.h"
 #include "Area.h"
+#include <iostream>
 
 GameLoop::GameLoop(sf::Window& win, Graphics& gfx, const Settings& settings)
 	:
@@ -41,7 +42,7 @@ void GameLoop::Loop()
 void GameLoop::UpdateScene()
 {
 	ProcessEvents();
-	character.Update(dt.asSeconds());
+	character.Update(dt.asSeconds(),win);
 }
 
 void GameLoop::DrawScene()
