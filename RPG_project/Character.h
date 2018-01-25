@@ -18,7 +18,6 @@ private:
 	float vel = 100;
 	std::unique_ptr<Weapon> weapon;
 	float health;
-
 	sf::Texture textureSheet;
 	sf::VertexArray sprite{ sf::Quads,4 };
 };

@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Maths.h"
 
 Character::Character(const sf::Vector2f& pos, const Settings& settings)
 	:
@@ -36,10 +37,8 @@ void Character::Update(const float dt, const sf::Window& win)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		dir.x -= 1;
 		
-	//dir = (sf::Vector2f)sf::Mouse::getPosition(win) - pos;
-	float length = sqrt((dir.x * dir.x) + (dir.y * dir.y));
-	if (length != 0)
-		dir = sf::Vector2f(dir.x / length, dir.y / length);
+//	dir = (sf::Vector2f)sf::Mouse::getPosition(win) - pos;
+	dir = Maths::NormalizeVec(dir);
 
 	pos += dir * dt * vel;
 }
@@ -52,7 +51,7 @@ sf::Vector2f Character::GetPos() const
 void Character::ApplyTexture(const int index, const bool flippedHorizontal, const bool flippedVertical, const Graphics& gfx)
 {
 
-	const sf::Vector2f texPos(index % (textureSheet.getSize().x / gfx.GetSpriteSize().x) * gfx.GetSpriteSize().x, index / (textureSheet.getSize().x / gfx.GetSpriteSize().x) * gfx.GetSpriteSize().y);
+	const sf::Vector2f texPos(float(index % (textureSheet.getSize().x / gfx.GetSpriteSize().x) * gfx.GetSpriteSize().x), float(index / (textureSheet.getSize().x / gfx.GetSpriteSize().x) * gfx.GetSpriteSize().y));
 
 	if (!flippedHorizontal && !flippedVertical)
 	{

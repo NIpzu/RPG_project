@@ -25,23 +25,32 @@ bool CircleArea::isInArea(const sf::Vector2f pos) const
 	return std::pow(radius, 2) > std::pow(std::abs(center.x - pos.x), 2) + std::pow(std::abs(center.y - pos.y), 2);
 }
 
-CircleSectorArea::CircleSectorArea(const sf::Vector2f center, const float radius, const Angle angleDir, const Angle angleWidth)
+/*CircleSectorArea::CircleSectorArea(const sf::Vector2f center, const float radius, const Angle angleDir, const Angle angleWidth)
 	:
 	center(center),
 	radius(radius),
 	ccwAngle(Angle(angleDir.GetAngle() - (angleWidth.GetAngle() / 2.0f))),
 	cwAngle(Angle(angleDir.GetAngle() + (angleWidth.GetAngle() / 2.0f)))
 {
+}*/
+
+CircleSectorArea::CircleSectorArea(const sf::Vector2f center, const float radius, const sf::Vector2f ccwAngle, const sf::Vector2f cwAngle)
+	:
+	center(center),
+	radius(radius),
+	ccwAngle(ccwAngle),
+	cwAngle(cwAngle)
+{
 }
 
 bool CircleSectorArea::isInArea(const sf::Vector2f pos) const
 {
 	const sf::Vector2f relPos = pos - center;
-	Angle angle = Angle(relPos);
+	//Angle angle = Angle(relPos);
 
+	return -ccwAngle.x*relPos.y + ccwAngle.y*relPos.x > 0 && -cwAngle.x*relPos.y + cwAngle.y*relPos.x < 0 && std::pow(relPos.x, 2) + std::pow(relPos.y, 2) <= radius * radius;
 
-
-	return angle.isBetween(ccwAngle, cwAngle) && std::pow(relPos.x,2) + std::pow(relPos.y, 2) <= radius * radius;
+	//return angle.isBetween(ccwAngle, cwAngle) && std::pow(relPos.x,2) + std::pow(relPos.y, 2) <= radius * radius;
 }
 
 TriangleArea::TriangleArea(const sf::Vector2f point0, const sf::Vector2f point1, const sf::Vector2f point2)

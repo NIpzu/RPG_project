@@ -38,13 +38,16 @@ private:
 class CircleSectorArea
 {
 public:
-	CircleSectorArea(const sf::Vector2f center, const float radius, const Angle angleDir, const Angle angleWidth);
+	//CircleSectorArea(const sf::Vector2f center, const float radius, const Angle angleDir, const Angle angleWidth);
+	CircleSectorArea(const sf::Vector2f center, const float radius, const sf::Vector2f ccwAngle, const sf::Vector2f cwAngle);
 	bool isInArea(const sf::Vector2f pos) const;
 private:
 	const sf::Vector2f center;
 	const float radius;
-	const Angle ccwAngle;
-	const Angle cwAngle;
+//	const Angle ccwAngle;
+	//const Angle cwAngle;
+	const sf::Vector2f ccwAngle;
+	const sf::Vector2f cwAngle;
 };
 
 
